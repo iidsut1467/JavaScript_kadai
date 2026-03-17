@@ -62,28 +62,108 @@
 
 <script defer>
   // js課題① 下記問題のJSを実装して下さい
-
   // 第1問 ロードから5秒後にQ1の要素の文字サイズを30pxにせよ。
+const q1 = document.querySelector('.btn:nth-child(1)');
+setTimeout(() => {
+  q1.style.fontSize = '30px';
+}, 5000);
 
-  // 第2問 Q2の要素をクリックしたら背景色を赤、文字色を黒にせよ。
+// 第2問 Q2の要素をクリックしたら背景色を赤、文字色を黒にせよ。
+const q2 = document.querySelector('.btn:nth-child(2)');
+q2.addEventListener('click', () => {
+  q2.style.backgroundColor = 'red';
+  q2.style.color = 'black';
+});
 
-  // 第3問 Q3の要素をクリックしたら文字色を赤にし、その状態でもう一度クリックすると元に戻るようにせよ。
+// 第3問 Q3の要素をクリックしたら文字色を赤にし、その状態でもう一度クリックすると元に戻るようにせよ。
+const q3 = document.querySelector('.btn:nth-child(3)');
+q3.addEventListener('click', () => {
+  q3.style.color = q3.style.color === 'red' ? '' : 'red';
+});
 
-  // 第4問 Q4の要素をクリックしたらこの要素の前後とこの要素内の前後に<p>テキスト</p>を挿入せよ。
+// 第4問 Q4の要素をクリックしたらこの要素の前後とこの要素内の前後に<p>テキスト</p>を挿入せよ。
+const q4 = document.querySelector('.btn:nth-child(4)');
+q4.addEventListener('click', () => {
+  q4.insertAdjacentHTML('afterbegin', '<p>テキスト</p>');  // 前
+  q4.insertAdjacentHTML('beforeend', '<p>テキスト</p>');   // 後
+});
 
-  // 第5問 Q5の要素をクリックしたらこの要素からis-bigというクラスを削除せよ。
+// 第5問 Q5の要素をクリックしたらこの要素からis-bigというクラスを削除せよ。
+const q5 = document.querySelector('.btn.is-big');
+q5.addEventListener('click', () => {
+  q5.classList.remove('is-big');
+});
 
-  // 第6問 Q6の要素をクリックしたらこの要素を0.5秒かけてmargin-rightとmargin-bottomを150pxの位置に移動させよ。
+// 第6問 Q6の要素をクリックしたらこの要素を0.5秒かけてmargin-rightとmargin-bottomを150pxの位置に移動させよ。
+const q6 = document.querySelector('.btn:nth-child(6)');
+q6.addEventListener('click', () => {
+  q6.style.transition = 'margin 0.5s';
+  q6.style.marginRight = '150px';
+  q6.style.marginBottom = '150px';
+});
 
-  // 第7問 Q7の要素をクリックしたら、その要素が「何番目のdlの子要素」かをconsole.log()とalert()を用いて表示させよ。（最初の要素は0ではなく1と表示されること）Hint：closest()メソッドを使う
+// 第7問 Q7の要素をクリックしたら、その要素が「何番目のdlの子要素」かをconsole.log()とalert()を用いて表示させよ。（最初の要素は0ではなく1と表示されること）Hint：closest()メソッドを使う
+const q7List = document.querySelectorAll('.lists dt, .lists dd');
+q7List.forEach(el => {
+  el.addEventListener('click', (e) => {
+    const dl = e.target.closest('dl');
+    const dls = Array.from(document.querySelectorAll('dl.lists'));
+    const index = dls.indexOf(dl) + 1;
+    console.log(index);
+    alert(index);
+  });
+});
 
-  // 第8問 Q8の要素をhoverしたらis-bigというクラスを付与し、hoverが外れたら、クラスを削除せよ。
+// 第8問 Q8の要素をhoverしたらis-bigというクラスを付与し、hoverが外れたら、クラスを削除せよ。
+// 「Q8」というテキストを持つdivを特定します
+const q8 = Array.from(document.querySelectorAll('.btn')).find(el => el.textContent === 'Q8');
+if (q8) {
+  q8.addEventListener('mouseenter', () => q8.classList.add('is-big'));
+  q8.addEventListener('mouseleave', () => q8.classList.remove('is-big'));
+}
 
-  // 第9問 Q9の要素をクリックしたらこの要素にdata属性を設定し、その内容をconsoleに表示せよ。
+// 第9問 Q9の要素をクリックしたらこの要素にdata属性を設定し、その内容をconsoleに表示せよ。
+const q9 = Array.from(document.querySelectorAll('.btn')).find(el => el.textContent.trim() === 'Q9');
+if (q9) {
+  q9.addEventListener('click', () => {
+    q9.dataset.sample = 'hello'; // data-sample="hello" を付与
+    console.log('Q9のデータ属性:', q9.dataset.sample);
+    alert('Q9にdata属性を設定しました: ' + q9.dataset.sample); // 確認用
+  });
+}
 
-  // 第10問 Q10の子要素をクリックしたら、その要素のインデックスと等しいid="q11"の子要素にis-bigというクラスを追加し、それ以外のクラスからは削除せよ。（インデックスの一致する要素だけにis-bigがついている状態）
+// 第10問 Q10の子要素をクリックしたら、その要素のインデックスと等しいid="q11"の子要素にis-bigというクラスを追加し、それ以外のクラスからは削除せよ。
+// Q10のリストは「id="q11"」の直前にある ul.lists です
+const q10ListParent = document.querySelector('#q11').previousElementSibling;
+const q10Lis = q10ListParent.querySelectorAll('li');
+const q11Lis = document.querySelectorAll('#q11 li');
 
-  // 第11問 Q12をクリックしたら、Q13リストのli要素の順番と中身のテキストをconsoleに表示させよ。
+q10Lis.forEach((li, index) => {
+  li.addEventListener('click', () => {
+    // Q11のすべてのliから一旦削除
+    q11Lis.forEach(item => item.classList.remove('is-big'));
+    // 同じインデックスのQ11のliに付与
+    if (q11Lis[index]) {
+      q11Lis[index].classList.add('is-big');
+    }
+  });
+});
+
+// 第11問（HTML内Q12） Q12をクリックしたら、Q13リストのli要素の順番と中身のテキストをconsoleに表示させよ。
+const q12Btn = Array.from(document.querySelectorAll('.btn')).find(el => el.textContent.trim() === 'Q12');
+
+const q13Lis = document.querySelectorAll('ul.lists:last-of-type li');
+
+if (q12Btn && q13Lis.length > 0) {
+  q12Btn.addEventListener('click', () => {
+    console.log('- Q13リストの内容 -');
+    q13Lis.forEach((li, index) => {
+      // 順番（1から）とテキストを表示
+      console.log(`${index + 1}番目: ${li.textContent.trim()}`);
+    });
+    alert('Q13の内容をコンソールに出力しました。'); 
+  });
+}
 </script>
 </body>
 </html>
