@@ -1,0 +1,48 @@
+.u-mbm {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.btn {
+  line-height: 40px;
+  border-radius: 10px;
+  width: 200px;
+  background-color: orange;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+.lists > li {
+  text-align: center;
+  line-height: 30px;
+  width: 200px;
+  color: #fff;
+  background-color: pink;
+  border-bottom: 1px #fff solid;
+  cursor: pointer;
+}
+
+.lists > dt {
+  text-align: center;
+  line-height: 30px;
+  width: 200px;
+  color: #fff;
+  background-color: blue;
+  border-bottom: 1px #fff solid;
+  cursor: pointer;
+}
+.lists > dd {
+  text-align: center;
+  line-height: 30px;
+  width: 200px;
+  color: #fff;
+  background-color: yellow;
+  border-bottom: 1px #fff solid;
+  cursor: pointer;
+}
+.wrapper {
+  width: 200px;
+  margin: 30px auto 0;
+}
+.is-big {
+  font-size: 25px;
+}
